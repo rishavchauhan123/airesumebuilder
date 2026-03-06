@@ -238,22 +238,40 @@ export default function ResumeBuild() {
 
       // Clone the element so we can remove strict scroll container constraints for the PDF
       const clone = element.cloneNode(true) as HTMLElement;
-      clone.style.height = "auto";
+      
+      // Essential fixes for html2canvas
+      clone.classList.remove("overflow-y-auto");
+      clone.classList.remove("h-full");
+      clone.classList.add("pdf-export-mode");
+      
+      clone.style.height = "max-content";
       clone.style.overflow = "visible";
       clone.style.position = "absolute";
-      clone.style.top = "-9999px";
+      clone.style.top = "0";
       clone.style.left = "-9999px";
-      clone.style.width = "8.5in"; // Standard desktop preview width for US letter
-      clone.style.padding = "20px";
+      clone.style.width = "794px"; // Exact A4 width in pixels (~8.27in at 96dpi)
+      
+      // Explicitly set a white background so it doesn't render transparent/black 
+      // if Tailwind gradients fail to load in html2canvas
+      clone.style.backgroundColor = "white";
+      
       document.body.appendChild(clone);
+
+      // Wait a moment for any lazy styles/images to settle in the cloned node
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       const fileName = `${formData.firstName || "My"}_${formData.lastName || "Resume"}.pdf`.replace(/\s+/g, '_');
       
       const opt = {
         margin:       0,
         filename:     fileName,
-        image:        { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
+        image:        { type: 'jpeg' as const, quality: 1 },
+        html2canvas:  { 
+          scale: 2, 
+          useCORS: true,
+          logging: true,
+          windowWidth: 1024 // Force a desktop-sized viewport for consistent Tailwind rendering
+        },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
       };
 

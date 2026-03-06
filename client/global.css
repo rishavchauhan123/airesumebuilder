@@ -117,4 +117,13 @@
     overflow-x: auto;
     white-space: pre;
   }
+
+  /* PDF Export Utilities */
+  .pdf-export-mode {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  .pdf-export-mode::-webkit-scrollbar {
+    display: none !important;
+  }
 }
