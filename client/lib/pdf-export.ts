@@ -29,59 +29,50 @@ interface ResumeData {
   selectedTemplate: "modern" | "classic" | "minimal";
 }
 
+import html2pdf from "html2pdf.js";
+
 /**
  * Generate resume PDF
- * Creates a printable document and triggers browser print dialog
+ * Creates a PDF document and triggers a direct file download
  */
 export async function generateResumePDF(data: ResumeData) {
   try {
     // Create a temporary container for the resume
     const container = document.createElement("div");
-    container.id = "resume-print-container";
-    container.style.position = "fixed";
-    container.style.left = "-9999px";
-    container.style.top = "-9999px";
-    container.style.width = "8.5in";
-    container.style.height = "11in";
+    container.id = "resume-download-container";
+    container.style.width = "8.5in"; // Standard US Letter width
     container.style.padding = "0.5in";
     container.style.backgroundColor = "white";
+    
+    // Position it off-screen so it doesn't flash in the UI
+    container.style.position = "absolute";
+    container.style.left = "-9999px";
+    container.style.top = "-9999px";
 
     const htmlContent = generateResumeHTML(data);
     container.innerHTML = htmlContent;
     document.body.appendChild(container);
 
-    // Wait a moment for styles to apply
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Wait a moment to ensure fonts/images are ready
+    await new Promise(resolve => setTimeout(resolve, 300));
 
-    // Trigger print dialog
-    const printWindow = window.open("", "", "height=600,width=800");
-    if (!printWindow) {
-      document.body.removeChild(container);
-      throw new Error("Print window blocked");
-    }
-
-    printWindow.document.write(htmlContent);
-    printWindow.document.close();
-
-    // Wait for content to load, then open print dialog
-    printWindow.onload = () => {
-      printWindow.focus();
-      printWindow.print();
+    // Configure html2pdf options
+    const fileName = `${data.firstName}_${data.lastName}_Resume.pdf`.replace(/\s+/g, '_');
+    const opt = {
+      margin:       0, // Margins handled by container padding
+      filename:     fileName,
+      image:        { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
     };
 
-    // Fallback: trigger print after delay
-    setTimeout(() => {
-      if (!printWindow.closed) {
-        printWindow.print();
-      }
-    }, 1000);
+    // Generate and download the PDF
+    await html2pdf().from(container).set(opt).save();
 
-    // Clean up container after a delay
-    setTimeout(() => {
-      if (document.body.contains(container)) {
-        document.body.removeChild(container);
-      }
-    }, 2000);
+    // Clean up container
+    if (document.body.contains(container)) {
+      document.body.removeChild(container);
+    }
 
   } catch (error) {
     console.error("Error generating PDF:", error);
