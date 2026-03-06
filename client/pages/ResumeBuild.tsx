@@ -230,23 +230,42 @@ export default function ResumeBuild() {
       setIsExportingPDF(true);
       toast.loading("Generating your resume PDF...");
 
-      await generateResumePDF({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        location: formData.location,
-        linkedIn: formData.linkedIn,
-        portfolio: formData.portfolio,
-        experiences: formData.experiences,
-        education: formData.education,
-        skills: formData.skills,
-        professionalSummary: formData.professionalSummary,
-        certifications: formData.certifications,
-        languages: formData.languages,
-        projects: formData.projects,
-        selectedTemplate: formData.selectedTemplate,
-      });
+      // Execute html2pdf on the live preview component 
+      const element = document.getElementById("resume-live-preview");
+      if (!element) {
+        throw new Error("Could not find resume preview element");
+      }
+
+      // Clone the element so we can remove strict scroll container constraints for the PDF
+      const clone = element.cloneNode(true) as HTMLElement;
+      clone.style.height = "auto";
+      clone.style.overflow = "visible";
+      clone.style.position = "absolute";
+      clone.style.top = "-9999px";
+      clone.style.left = "-9999px";
+      clone.style.width = "8.5in"; // Standard desktop preview width for US letter
+      clone.style.padding = "20px";
+      document.body.appendChild(clone);
+
+      const fileName = `${formData.firstName || "My"}_${formData.lastName || "Resume"}.pdf`.replace(/\s+/g, '_');
+      
+      const opt = {
+        margin:       0,
+        filename:     fileName,
+        image:        { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
+      };
+
+      // Ensure html2pdf is dynamically imported for client-side rendering
+      const html2pdf = (await import("html2pdf.js")).default;
+      
+      await html2pdf().from(clone).set(opt).save();
+
+      // Clean up UI clone
+      if (document.body.contains(clone)) {
+        document.body.removeChild(clone);
+      }
 
       toast.success("Resume PDF downloaded successfully!");
     } catch (error) {

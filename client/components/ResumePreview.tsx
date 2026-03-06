@@ -86,7 +86,10 @@ export default function ResumePreview({
     });
 
   return (
-    <div className={cn("h-full overflow-y-auto", getTemplateStyles(selectedTemplate))}>
+    <div 
+      id="resume-live-preview" 
+      className={cn("h-full overflow-y-auto", getTemplateStyles(selectedTemplate))}
+    >
       {/* Header Section */}
       <div className={cn(
         "px-6 pt-8 pb-6 text-center",
