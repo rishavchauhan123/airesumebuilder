@@ -248,7 +248,7 @@ export default function ResumeBuild() {
         selectedTemplate: formData.selectedTemplate,
       });
 
-      toast.success("Resume PDF ready! Check your browser's print dialog");
+      toast.success("Resume PDF downloaded successfully!");
     } catch (error) {
       console.error("PDF export error:", error);
       toast.error("Failed to generate PDF. Please make sure pop-ups are enabled");
