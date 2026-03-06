@@ -308,7 +308,7 @@ export default function Index() {
             <p className="text-sm">
               © 2024 ResumeAI. All rights reserved.
             </p>
-            <p className="text-sm">Made with ❤️ by BuilderIO</p>
+            <p className="text-sm">Made with ❤️</p>
           </div>
         </div>
       </footer>
