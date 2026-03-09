@@ -285,6 +285,48 @@ function generateResumeHTML(data: ResumeData): string {
           margin-bottom: 0.02in;
           list-style: disc;
         }
+
+        .languages-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.08in;
+        }
+
+        .language-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.04in;
+        }
+
+        .language-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .language-name {
+          font-size: 10px;
+          font-weight: 600;
+          color: #1f2937;
+        }
+
+        .language-proficiency {
+          font-size: 9px;
+          color: #666;
+        }
+
+        .language-bar {
+          width: 100%;
+          height: 6px;
+          background-color: #e5e7eb;
+          border-radius: 3px;
+          overflow: hidden;
+        }
+
+        .language-progress {
+          height: 100%;
+          border-radius: 3px;
+        }
       </style>
     </head>
     <body>
@@ -307,8 +349,30 @@ function generateResumeHTML(data: ResumeData): string {
           data.professionalSummary
             ? `
           <div class="section">
-            <h2>Professional Summary</h2>
+            <h2>Summary</h2>
             <p class="summary-text">${escapeHtml(data.professionalSummary)}</p>
+          </div>
+        `
+            : ""
+        }
+
+        ${
+          data.skills.length > 0
+            ? `
+          <div class="section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+              ${data.skills
+                .map(
+                  (skill) => `
+                <div class="skill-item">
+                  <div class="skill-bullet"></div>
+                  <div class="skill-text">${escapeHtml(skill)}</div>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
           </div>
         `
             : ""
@@ -318,7 +382,7 @@ function generateResumeHTML(data: ResumeData): string {
           data.experiences.length > 0
             ? `
           <div class="section">
-            <h2>Professional Experience</h2>
+            <h2>Experience</h2>
             ${data.experiences
               .map(
                 (exp) => `
@@ -369,20 +433,33 @@ function generateResumeHTML(data: ResumeData): string {
         }
 
         ${
-          data.skills.length > 0
+          data.languages
             ? `
           <div class="section">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-              ${data.skills
-                .map(
-                  (skill) => `
-                <div class="skill-item">
-                  <div class="skill-bullet"></div>
-                  <div class="skill-text">${escapeHtml(skill)}</div>
-                </div>
-              `
-                )
+            <h2>Languages</h2>
+            <div class="languages-list">
+              ${data.languages
+                .split("\n")
+                .filter((l) => l.trim())
+                .map((lang) => {
+                  const [language, proficiency] = lang.split("-").map((s) => s.trim());
+                  const prof = proficiency || "Intermediate";
+                  const width = prof === "Native" ? "100%" : 
+                               prof === "Fluent" ? "80%" : 
+                               prof === "Advanced" ? "60%" : 
+                               prof === "Intermediate" ? "40%" : "20%";
+                  return `
+                    <div class="language-item">
+                      <div class="language-header">
+                        <span class="language-name">${escapeHtml(language)}</span>
+                        <span class="language-proficiency">${escapeHtml(prof)}</span>
+                      </div>
+                      <div class="language-bar">
+                        <div class="language-progress" style="width: ${width}; background: linear-gradient(90deg, ${colors.primary}, ${colors.secondary});"></div>
+                      </div>
+                    </div>
+                  `;
+                })
                 .join("")}
             </div>
           </div>
@@ -396,17 +473,6 @@ function generateResumeHTML(data: ResumeData): string {
           <div class="section">
             <h2>Certifications</h2>
             <div class="summary-text">${escapeHtml(data.certifications).replace(/\n/g, "<br>")}</div>
-          </div>
-        `
-            : ""
-        }
-
-        ${
-          data.languages
-            ? `
-          <div class="section">
-            <h2>Languages</h2>
-            <div class="summary-text">${escapeHtml(data.languages).replace(/\n/g, "<br>")}</div>
           </div>
         `
             : ""

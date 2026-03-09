@@ -230,65 +230,44 @@ export default function ResumeBuild() {
       setIsExportingPDF(true);
       toast.loading("Generating your resume PDF...");
 
-      // Execute html2pdf on the live preview component 
-      const element = document.getElementById("resume-live-preview");
-      if (!element) {
-        throw new Error("Could not find resume preview element");
-      }
-
-      // Clone the element so we can remove strict scroll container constraints for the PDF
-      const clone = element.cloneNode(true) as HTMLElement;
-      
-      // Essential fixes for html2canvas
-      clone.classList.remove("overflow-y-auto");
-      clone.classList.remove("h-full");
-      clone.classList.add("pdf-export-mode");
-      
-      clone.style.height = "max-content";
-      clone.style.overflow = "visible";
-      clone.style.position = "absolute";
-      clone.style.top = "0";
-      clone.style.left = "-9999px";
-      clone.style.width = "794px"; // Exact A4 width in pixels (~8.27in at 96dpi)
-      
-      // Explicitly set a white background so it doesn't render transparent/black 
-      // if Tailwind gradients fail to load in html2canvas
-      clone.style.backgroundColor = "white";
-      
-      document.body.appendChild(clone);
-
-      // Wait a moment for any lazy styles/images to settle in the cloned node
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      const fileName = `${formData.firstName || "My"}_${formData.lastName || "Resume"}.pdf`.replace(/\s+/g, '_');
-      
-      const opt = {
-        margin:       0,
-        filename:     fileName,
-        image:        { type: 'jpeg' as const, quality: 1 },
-        html2canvas:  { 
-          scale: 2, 
-          useCORS: true,
-          logging: true,
-          windowWidth: 1024 // Force a desktop-sized viewport for consistent Tailwind rendering
-        },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
+      // Convert form data to the format expected by generateResumePDF
+      const resumeData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        location: formData.location,
+        linkedIn: formData.linkedIn,
+        portfolio: formData.portfolio,
+        profilePhoto: formData.profilePhoto,
+        experiences: formData.experiences.map(exp => ({
+          jobTitle: exp.jobTitle,
+          company: exp.company,
+          startDate: exp.startDate,
+          endDate: exp.endDate,
+          currentlyWorking: exp.currentlyWorking,
+          responsibilities: exp.responsibilities,
+        })),
+        education: formData.education.map(edu => ({
+          degree: edu.degree,
+          institution: edu.institution,
+          year: edu.year,
+          fieldOfStudy: edu.fieldOfStudy,
+        })),
+        skills: formData.skills,
+        professionalSummary: formData.professionalSummary,
+        certifications: formData.certifications,
+        languages: formData.languages,
+        projects: formData.projects,
+        selectedTemplate: formData.selectedTemplate,
       };
 
-      // Ensure html2pdf is dynamically imported for client-side rendering
-      const html2pdf = (await import("html2pdf.js")).default;
-      
-      await html2pdf().from(clone).set(opt).save();
-
-      // Clean up UI clone
-      if (document.body.contains(clone)) {
-        document.body.removeChild(clone);
-      }
+      await generateResumePDF(resumeData);
 
       toast.success("Resume PDF downloaded successfully!");
     } catch (error) {
       console.error("PDF export error:", error);
-      toast.error("Failed to generate PDF. Please make sure pop-ups are enabled");
+      toast.error("Failed to generate PDF. Please try again.");
     } finally {
       setIsExportingPDF(false);
     }
@@ -981,7 +960,9 @@ export default function ResumeBuild() {
                 education={formData.education}
                 skills={formData.skills}
                 professionalSummary={formData.professionalSummary}
+                certifications={formData.certifications}
                 languages={formData.languages}
+                projects={formData.projects}
                 selectedTemplate={formData.selectedTemplate}
               />
             </div>

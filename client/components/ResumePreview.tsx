@@ -27,7 +27,9 @@ interface ResumePreviewProps {
   }>;
   skills: string[];
   professionalSummary: string;
+  certifications: string;
   languages: string;
+  projects: string;
   selectedTemplate: "modern" | "classic" | "minimal";
 }
 
@@ -70,7 +72,9 @@ export default function ResumePreview({
   education,
   skills,
   professionalSummary,
+  certifications,
   languages,
+  projects,
   selectedTemplate,
 }: ResumePreviewProps) {
   const initials = getInitials(firstName, lastName);
@@ -347,6 +351,40 @@ export default function ResumePreview({
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+        )}
+
+        {/* Certifications */}
+        {certifications && (
+          <section>
+            <h2 className={cn(
+              "text-xs font-bold uppercase tracking-wide mb-3 pb-2 border-b-2",
+              selectedTemplate === "modern"
+                ? "text-primary border-primary/30"
+                : "text-gray-900 border-gray-300"
+            )}>
+              Certifications
+            </h2>
+            <div className="text-xs text-gray-700 leading-relaxed whitespace-pre-line">
+              {certifications}
+            </div>
+          </section>
+        )}
+
+        {/* Projects */}
+        {projects && (
+          <section>
+            <h2 className={cn(
+              "text-xs font-bold uppercase tracking-wide mb-3 pb-2 border-b-2",
+              selectedTemplate === "modern"
+                ? "text-primary border-primary/30"
+                : "text-gray-900 border-gray-300"
+            )}>
+              Projects
+            </h2>
+            <div className="text-xs text-gray-700 leading-relaxed whitespace-pre-line">
+              {projects}
             </div>
           </section>
         )}
