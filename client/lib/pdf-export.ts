@@ -48,9 +48,10 @@ export async function generateResumePDF(data: ResumeData) {
     container.style.left = "0";
     container.style.opacity = "0";          // invisible but rendered
     container.style.pointerEvents = "none";
-    container.style.width = "8.5in";
-    container.style.padding = "0.5in";
+    container.style.width = "816px";       // fixed pixel width for A4
+    container.style.minHeight = "1056px";  // fixed pixel height for A4
     container.style.backgroundColor = "white";
+    container.style.overflow = "visible";  // ensure content isn't clipped
     document.body.appendChild(container);
 
     // render resume preview into container so it matches the live UI exactly
@@ -95,6 +96,15 @@ export async function generateResumePDF(data: ResumeData) {
     // allow images/fonts to load
     await new Promise(resolve => setTimeout(resolve, 300));
 
+    // force the resume preview to have proper dimensions for PDF
+    const resumePreview = container.querySelector('#resume-live-preview') as HTMLElement;
+    if (resumePreview) {
+      resumePreview.style.height = 'auto';
+      resumePreview.style.minHeight = '1056px';
+      resumePreview.style.overflow = 'visible';
+      resumePreview.style.position = 'relative';
+    }
+
     // debug dump: ensure container has rendered content
     console.log("[PDF] container dims", container.offsetWidth, container.offsetHeight);
     console.log("[PDF] container innerHTML snippet", container.innerHTML.slice(0, 500));
@@ -107,8 +117,18 @@ export async function generateResumePDF(data: ResumeData) {
       margin:       0,
       filename:     fileName,
       image:        { type: 'jpeg' as const, quality: 1 },
-      html2canvas:  { scale: 2, useCORS: true, logging: true },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
+      html2canvas:  {
+        scale: 2,
+        useCORS: true,
+        logging: true,
+        width: 816,
+        height: 1056,
+        windowWidth: 816,
+        windowHeight: 1056,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      },
+      jsPDF:        { unit: 'px', format: [816, 1056], orientation: 'portrait' as const }
     };
     console.log("[PDF] calling html2pdf with opts", opt);
 
