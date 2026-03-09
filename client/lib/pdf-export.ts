@@ -54,11 +54,16 @@ export async function generateResumePDF(data: ResumeData) {
     container.style.zIndex = "-9999";
     container.style.pointerEvents = "none";
     const htmlContent = generateResumeHTML(data);
+    console.log("[PDF] generated HTML content length", htmlContent.length);
     container.innerHTML = htmlContent;
     document.body.appendChild(container);
 
+    // inspect container for debugging
+    console.log("[PDF] container appended, innerHTML snippet", container.innerHTML.slice(0, 200));
+    console.log("[PDF] container dimensions", container.offsetWidth, container.offsetHeight);
+
     // Wait a moment to ensure fonts/images are ready
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     // Configure html2pdf options
     const fileName = `${data.firstName}_${data.lastName}_Resume.pdf`.replace(/\s+/g, '_');
