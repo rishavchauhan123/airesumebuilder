@@ -44,14 +44,14 @@ export async function generateResumePDF(data: ResumeData) {
     container.style.padding = "0.5in";
     container.style.backgroundColor = "white";
     
-    // Keep it in the document flow but hidden behind everything else.
-    // html2canvas struggles to capture elements that are completely off-screen,
-    // so we avoid negative offsets. Instead we push the container behind using a
-    // very low z-index while keeping it at 0,0 so it still renders.
-    container.style.position = "fixed";
+    // Keep it at the top-left but make it invisible rather than moving it
+    // out of the viewport or behind everything. html2canvas will still render
+    // the element when it's transparent, whereas hidden/off-screen elements can
+    // end up with a computed height of 0 or be skipped entirely.
+    container.style.position = "absolute";
     container.style.top = "0";
     container.style.left = "0";
-    container.style.zIndex = "-9999";
+    container.style.opacity = "0";
     container.style.pointerEvents = "none";
     const htmlContent = generateResumeHTML(data);
     console.log("[PDF] generated HTML content length", htmlContent.length);
