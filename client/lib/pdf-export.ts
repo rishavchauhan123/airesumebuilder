@@ -37,50 +37,51 @@ import html2pdf from "html2pdf.js";
  */
 export async function generateResumePDF(data: ResumeData) {
   try {
-    // Create a temporary container for the resume
-    const container = document.createElement("div");
-    container.id = "resume-download-container";
-    container.style.width = "8.5in"; // Standard US Letter width
-    container.style.padding = "0.5in";
-    container.style.backgroundColor = "white";
-    
-    // Keep it at the top-left but make it invisible rather than moving it
-    // out of the viewport or behind everything. html2canvas will still render
-    // the element when it's transparent, whereas hidden/off-screen elements can
-    // end up with a computed height of 0 or be skipped entirely.
-    container.style.position = "absolute";
-    container.style.top = "0";
-    container.style.left = "0";
-    container.style.opacity = "0";
-    container.style.pointerEvents = "none";
+    // Build full HTML string for the resume document
     const htmlContent = generateResumeHTML(data);
     console.log("[PDF] generated HTML content length", htmlContent.length);
-    container.innerHTML = htmlContent;
-    document.body.appendChild(container);
 
-    // inspect container for debugging
-    console.log("[PDF] container appended, innerHTML snippet", container.innerHTML.slice(0, 200));
-    console.log("[PDF] container dimensions", container.offsetWidth, container.offsetHeight);
+    // Use a hidden iframe to host the HTML so the <html>/<head> structure is
+    // valid and layout is computed correctly. html2canvas will then render the
+    // iframe's body element which has proper dimensions.
+    const iframe = document.createElement("iframe");
+    iframe.id = "resume-download-iframe";
+    iframe.style.position = "absolute";
+    iframe.style.top = "0";
+    iframe.style.left = "0";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    iframe.style.opacity = "0";
+    iframe.style.pointerEvents = "none";
+    document.body.appendChild(iframe);
 
-    // Wait a moment to ensure fonts/images are ready
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) throw new Error("Unable to access iframe document for PDF export");
+
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+
+    // Wait for layout to settle inside the iframe
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    // Configure html2pdf options
+    const bodyEl = doc.body;
+    console.log("[PDF] iframe body dimensions", bodyEl.offsetWidth, bodyEl.offsetHeight);
+
     const fileName = `${data.firstName}_${data.lastName}_Resume.pdf`.replace(/\s+/g, '_');
     const opt = {
-      margin:       0, // Margins handled by container padding
-      filename:     fileName,
-      image:        { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
+      margin: 0,
+      filename: fileName,
+      image: { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' as const }
     };
 
-    // Generate and download the PDF
-    await html2pdf().from(container).set(opt).save();
+    await html2pdf().from(bodyEl).set(opt).save();
 
-    // Clean up container
-    if (document.body.contains(container)) {
-      document.body.removeChild(container);
+    // Clean up the iframe
+    if (document.body.contains(iframe)) {
+      document.body.removeChild(iframe);
     }
 
   } catch (error) {
