@@ -96,6 +96,9 @@ function generateResumeHTML(data: ResumeData): string {
   };
 
   const colors = getTemplateColors(data.selectedTemplate);
+  const headerGradient = data.selectedTemplate === "modern" 
+    ? `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`
+    : `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primary} 100%)`;
 
   return `
     <!DOCTYPE html>
@@ -115,54 +118,36 @@ function generateResumeHTML(data: ResumeData): string {
           margin: 0;
           padding: 0;
           width: 100%;
-          height: 100%;
+          height: auto;
         }
 
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          line-height: 1.6;
+          line-height: 1.5;
           color: #1f2937;
-          background: white;
+          background: #f9fafb;
         }
 
         @page {
           size: letter;
           margin: 0;
-        }
-
-        @media print {
-          html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-          }
-
-          .container {
-            margin: 0 !important;
-            padding: 0.5in !important;
-            page-break-after: avoid;
-          }
-
-          .section {
-            page-break-inside: avoid;
-          }
+          padding: 0;
         }
 
         .container {
           width: 8.5in;
-          height: 11in;
           margin: 0;
-          padding: 0.5in;
+          padding: 0;
           background: white;
-          line-height: 1.4;
+          min-height: 11in;
         }
 
+        /* HEADER SECTION */
         .header {
+          background: ${headerGradient};
           text-align: center;
-          margin-bottom: 0.3in;
-          padding-bottom: 0.2in;
-          border-bottom: 3px solid ${colors.primary};
+          padding: 0.4in 0.5in;
+          color: white;
         }
 
         .avatar-container {
@@ -172,130 +157,181 @@ function generateResumeHTML(data: ResumeData): string {
         }
 
         .avatar {
-          width: 0.8in;
-          height: 0.8in;
+          width: 0.7in;
+          height: 0.7in;
           border-radius: 50%;
           object-fit: cover;
-          border: 3px solid ${colors.primary};
+          border: 3px solid white;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .avatar-initials {
-          width: 0.8in;
-          height: 0.8in;
+          width: 0.7in;
+          height: 0.7in;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bold;
           color: white;
           border: 3px solid white;
-          background: linear-gradient(135deg, ${colors.primary}, ${colors.secondary});
+          background: rgba(255,255,255,0.2);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .name {
-          font-size: 24px;
-          font-weight: bold;
-          color: ${colors.primary};
-          margin-bottom: 0.08in;
+          font-size: 28px;
+          font-weight: 700;
+          color: white;
+          margin: 0.1in 0;
+          letter-spacing: -0.5px;
         }
 
         .contact-info {
-          font-size: 9px;
-          color: #666;
-          line-height: 1.3;
+          font-size: 8.5px;
+          color: rgba(255,255,255,0.95);
+          line-height: 1.4;
+          font-weight: 500;
+        }
+
+        .contact-row {
+          display: flex;
+          justify-content: center;
+          gap: 0.15in;
+          flex-wrap: wrap;
+        }
+
+        .contact-item {
+          display: flex;
+          gap: 4px;
+        }
+
+        .contact-divider {
+          color: rgba(255,255,255,0.6);
+        }
+
+        .social-links {
+          margin-top: 0.08in;
+          display: flex;
+          justify-content: center;
+          gap: 0.15in;
+          font-size: 8px;
+          font-weight: 500;
+        }
+
+        .social-link {
+          color: rgba(255,255,255,0.9);
+          text-decoration: none;
+        }
+
+        .social-divider {
+          color: rgba(255,255,255,0.5);
+        }
+
+        /* CONTENT SECTION */
+        .content {
+          padding: 0.4in 0.5in;
         }
 
         .section {
-          margin-bottom: 0.2in;
+          margin-bottom: 0.25in;
+          page-break-inside: avoid;
         }
 
-        .section h2 {
-          font-size: 11px;
-          font-weight: bold;
-          color: ${colors.primary};
-          text-transform: uppercase;
-          border-bottom: 2px solid ${colors.primary};
-          padding-bottom: 0.06in;
-          margin-bottom: 0.1in;
-          letter-spacing: 0.5px;
-        }
-
-        .summary-text {
+        .section-title {
           font-size: 10px;
-          line-height: 1.4;
-          color: #374151;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: ${colors.primary};
+          margin-bottom: 0.1in;
+          padding-bottom: 0.05in;
+          border-bottom: 2px solid ${colors.primary};
+          letter-spacing: 0.8px;
         }
 
+        /* SUMMARY */
+        .summary-text {
+          font-size: 9px;
+          line-height: 1.5;
+          color: #374151;
+          text-align: justify;
+        }
+
+        /* SKILLS */
         .skills-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 0.08in;
+          gap: 0.08in 0.1in;
         }
 
         .skill-item {
           display: flex;
           align-items: flex-start;
-          gap: 0.08in;
+          gap: 0.06in;
+          font-size: 9px;
+          color: #374151;
+          line-height: 1.3;
         }
 
         .skill-bullet {
-          width: 4px;
-          height: 4px;
+          width: 3px;
+          height: 3px;
           background-color: ${colors.primary};
           border-radius: 50%;
           margin-top: 4px;
           flex-shrink: 0;
         }
 
-        .skill-text {
-          font-size: 10px;
-          color: #374151;
-        }
-
+        /* EXPERIENCE & EDUCATION */
         .entry {
-          margin-bottom: 0.15in;
+          margin-bottom: 0.12in;
+          page-break-inside: avoid;
         }
 
         .entry-header {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
-          margin-bottom: 0.03in;
+          margin-bottom: 0.02in;
+          gap: 0.1in;
         }
 
-        .entry h3 {
-          font-size: 10px;
-          font-weight: bold;
+        .entry-title {
+          font-size: 9px;
+          font-weight: 700;
           color: #1f2937;
           margin: 0;
         }
 
-        .date {
-          font-size: 9px;
+        .entry-date {
+          font-size: 8px;
           color: #666;
           white-space: nowrap;
+          flex-shrink: 0;
         }
 
-        .company {
-          font-size: 9px;
+        .entry-subtitle {
+          font-size: 8.5px;
           font-weight: 600;
           color: #4b5563;
           margin-bottom: 0.02in;
         }
 
         .responsibilities {
-          font-size: 9px;
+          font-size: 8px;
           color: #555;
-          line-height: 1.3;
-          margin-left: 0.1in;
+          line-height: 1.4;
+          margin-left: 0.08in;
+          padding-left: 0;
         }
 
         .responsibilities li {
-          margin-bottom: 0.02in;
-          list-style: disc;
+          margin-bottom: 0.01in;
+          list-style: disc inside;
         }
 
+        /* LANGUAGES */
         .languages-list {
           display: flex;
           flex-direction: column;
@@ -305,7 +341,7 @@ function generateResumeHTML(data: ResumeData): string {
         .language-item {
           display: flex;
           flex-direction: column;
-          gap: 0.04in;
+          gap: 0.03in;
         }
 
         .language-header {
@@ -315,138 +351,170 @@ function generateResumeHTML(data: ResumeData): string {
         }
 
         .language-name {
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 600;
           color: #1f2937;
         }
 
         .language-proficiency {
-          font-size: 9px;
+          font-size: 8px;
           color: #666;
         }
 
         .language-bar {
           width: 100%;
-          height: 6px;
+          height: 4px;
           background-color: #e5e7eb;
-          border-radius: 3px;
+          border-radius: 2px;
           overflow: hidden;
         }
 
         .language-progress {
           height: 100%;
-          border-radius: 3px;
+          border-radius: 2px;
+        }
+
+        /* CERTIFICATIONS & PROJECTS */
+        .cert-item {
+          font-size: 9px;
+          color: #374151;
+          line-height: 1.4;
+          margin-bottom: 0.05in;
         }
       </style>
     </head>
     <body>
       <div class="container">
+        <!-- HEADER -->
         <div class="header">
           ${
             data.profilePhoto
-              ? `<div class="avatar-container"><img src="${data.profilePhoto}" alt="Profile" class="avatar"></div>`
+              ? `<div class="avatar-container"><img src="${data.profilePhoto}" alt="Profile" class="avatar" /></div>`
               : `<div class="avatar-container"><div class="avatar-initials">${getInitials(data.firstName, data.lastName)}</div></div>`
           }
           <h1 class="name">${escapeHtml(`${data.firstName} ${data.lastName}`)}</h1>
           <div class="contact-info">
-            ${data.email ? `<div>${escapeHtml(data.email)}</div>` : ""}
-            ${data.phone ? `<div>${escapeHtml(data.phone)}</div>` : ""}
-            ${data.location ? `<div>${escapeHtml(data.location)}</div>` : ""}
+            <div class="contact-row">
+              ${data.email ? `<span class="contact-item">${escapeHtml(data.email)}</span>` : ""}
+              ${data.email && data.phone ? `<span class="contact-divider">•</span>` : ""}
+              ${data.phone ? `<span class="contact-item">${escapeHtml(data.phone)}</span>` : ""}
+              ${(data.email || data.phone) && data.location ? `<span class="contact-divider">•</span>` : ""}
+              ${data.location ? `<span class="contact-item">${escapeHtml(data.location)}</span>` : ""}
+            </div>
+            ${
+              data.linkedIn || data.portfolio
+                ? `
+            <div class="social-links">
+              ${data.linkedIn ? `<a class="social-link" href="${escapeHtml(data.linkedIn)}">LinkedIn</a>` : ""}
+              ${data.linkedIn && data.portfolio ? `<span class="social-divider">|</span>` : ""}
+              ${data.portfolio ? `<a class="social-link" href="${escapeHtml(data.portfolio)}">Portfolio</a>` : ""}
+            </div>
+            `
+                : ""
+            }
           </div>
         </div>
 
-        ${
-          data.professionalSummary
-            ? `
+        <!-- CONTENT -->
+        <div class="content">
+          ${
+            data.professionalSummary
+              ? `
           <div class="section">
-            <h2>Summary</h2>
+            <div class="section-title">Summary</div>
             <p class="summary-text">${escapeHtml(data.professionalSummary)}</p>
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
 
-        ${
-          data.skills.length > 0
-            ? `
+          ${
+            data.skills.length > 0
+              ? `
           <div class="section">
-            <h2>Skills</h2>
+            <div class="section-title">Skills</div>
             <div class="skills-grid">
               ${data.skills
                 .map(
                   (skill) => `
-                <div class="skill-item">
-                  <div class="skill-bullet"></div>
-                  <div class="skill-text">${escapeHtml(skill)}</div>
-                </div>
+              <div class="skill-item">
+                <div class="skill-bullet"></div>
+                <span>${escapeHtml(skill)}</span>
+              </div>
               `
                 )
                 .join("")}
             </div>
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
 
-        ${
-          data.experiences.length > 0
-            ? `
+          ${
+            data.experiences.length > 0
+              ? `
           <div class="section">
-            <h2>Experience</h2>
+            <div class="section-title">Experience</div>
             ${data.experiences
               .map(
                 (exp) => `
-              <div class="entry">
-                <div class="entry-header">
-                  <h3>${escapeHtml(exp.jobTitle)}</h3>
-                  <span class="date">${escapeHtml(exp.startDate)} - ${exp.currentlyWorking ? "Present" : escapeHtml(exp.endDate)}</span>
-                </div>
-                <div class="company">${escapeHtml(exp.company)}</div>
-                <ul class="responsibilities">
-                  ${exp.responsibilities
-                    .split("\n")
-                    .filter((r) => r.trim())
-                    .slice(0, 3)
-                    .map((resp) => `<li>${escapeHtml(resp.trim())}</li>`)
-                    .join("")}
-                </ul>
+            <div class="entry">
+              <div class="entry-header">
+                <h3 class="entry-title">${escapeHtml(exp.jobTitle)}</h3>
+                <span class="entry-date">${escapeHtml(exp.startDate)} - ${exp.currentlyWorking ? "Present" : escapeHtml(exp.endDate)}</span>
               </div>
+              <div class="entry-subtitle">${escapeHtml(exp.company)}</div>
+              ${
+                exp.responsibilities
+                  ? `
+              <ul class="responsibilities">
+                ${exp.responsibilities
+                  .split("\n")
+                  .filter((r) => r.trim())
+                  .slice(0, 3)
+                  .map((resp) => `<li>${escapeHtml(resp.trim())}</li>`)
+                  .join("")}
+              </ul>
+              `
+                  : ""
+              }
+            </div>
             `
               )
               .join("")}
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
 
-        ${
-          data.education.length > 0
-            ? `
+          ${
+            data.education.length > 0
+              ? `
           <div class="section">
-            <h2>Education & Training</h2>
+            <div class="section-title">Education & Training</div>
             ${data.education
               .map(
                 (edu) => `
-              <div class="entry">
-                <div class="entry-header">
-                  <h3>${escapeHtml(edu.degree)}${edu.fieldOfStudy ? ` in ${escapeHtml(edu.fieldOfStudy)}` : ""}</h3>
-                  <span class="date">${escapeHtml(edu.year)}</span>
-                </div>
-                <div class="company">${escapeHtml(edu.institution)}</div>
+            <div class="entry">
+              <div class="entry-header">
+                <h3 class="entry-title">${escapeHtml(edu.degree)}${edu.fieldOfStudy ? ` in ${escapeHtml(edu.fieldOfStudy)}` : ""}</h3>
+                <span class="entry-date">${escapeHtml(edu.year)}</span>
               </div>
+              <div class="entry-subtitle">${escapeHtml(edu.institution)}</div>
+            </div>
             `
               )
               .join("")}
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
 
-        ${
-          data.languages
-            ? `
+          ${
+            data.languages
+              ? `
           <div class="section">
-            <h2>Languages</h2>
+            <div class="section-title">Languages</div>
             <div class="languages-list">
               ${data.languages
                 .split("\n")
@@ -459,45 +527,58 @@ function generateResumeHTML(data: ResumeData): string {
                                prof === "Advanced" ? "60%" : 
                                prof === "Intermediate" ? "40%" : "20%";
                   return `
-                    <div class="language-item">
-                      <div class="language-header">
-                        <span class="language-name">${escapeHtml(language)}</span>
-                        <span class="language-proficiency">${escapeHtml(prof)}</span>
-                      </div>
-                      <div class="language-bar">
-                        <div class="language-progress" style="width: ${width}; background: linear-gradient(90deg, ${colors.primary}, ${colors.secondary});"></div>
-                      </div>
-                    </div>
+              <div class="language-item">
+                <div class="language-header">
+                  <span class="language-name">${escapeHtml(language)}</span>
+                  <span class="language-proficiency">${escapeHtml(prof)}</span>
+                </div>
+                <div class="language-bar">
+                  <div class="language-progress" style="width: ${width}; background: linear-gradient(90deg, ${colors.primary}, ${colors.secondary});"></div>
+                </div>
+              </div>
                   `;
                 })
                 .join("")}
             </div>
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
 
-        ${
-          data.certifications
-            ? `
+          ${
+            data.certifications
+              ? `
           <div class="section">
-            <h2>Certifications</h2>
-            <div class="summary-text">${escapeHtml(data.certifications).replace(/\n/g, "<br>")}</div>
+            <div class="section-title">Certifications</div>
+            <div>
+              ${data.certifications
+                .split("\n")
+                .filter((c) => c.trim())
+                .map((cert) => `<div class="cert-item">• ${escapeHtml(cert.trim())}</div>`)
+                .join("")}
+            </div>
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
 
-        ${
-          data.projects
-            ? `
+          ${
+            data.projects
+              ? `
           <div class="section">
-            <h2>Projects</h2>
-            <div class="summary-text">${escapeHtml(data.projects).replace(/\n/g, "<br>")}</div>
+            <div class="section-title">Projects</div>
+            <div>
+              ${data.projects
+                .split("\n")
+                .filter((p) => p.trim())
+                .map((proj) => `<div class="cert-item">• ${escapeHtml(proj.trim())}</div>`)
+                .join("")}
+            </div>
           </div>
-        `
-            : ""
-        }
+          `
+              : ""
+          }
+        </div>
       </div>
     </body>
     </html>
