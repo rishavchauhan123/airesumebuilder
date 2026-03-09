@@ -29,7 +29,10 @@ interface ResumeData {
   selectedTemplate: "modern" | "classic" | "minimal";
 }
 
+import React from "react";
+import ReactDOM from "react-dom/client";
 import html2pdf from "html2pdf.js";
+import ResumePreview from "@/components/ResumePreview";
 
 /**
  * Generate resume PDF
@@ -37,51 +40,79 @@ import html2pdf from "html2pdf.js";
  */
 export async function generateResumePDF(data: ResumeData) {
   try {
-    // Build full HTML string for the resume document
-    const htmlContent = generateResumeHTML(data);
-    console.log("[PDF] generated HTML content length", htmlContent.length);
+    // create an off-screen container and mount the React preview component
+    const container = document.createElement("div");
+    container.id = "resume-download-container";
+    container.style.position = "absolute";
+    container.style.top = "0";
+    container.style.left = "0";
+    container.style.opacity = "0";          // invisible but rendered
+    container.style.pointerEvents = "none";
+    container.style.width = "8.5in";
+    container.style.padding = "0.5in";
+    container.style.backgroundColor = "white";
+    document.body.appendChild(container);
 
-    // Use a hidden iframe to host the HTML so the <html>/<head> structure is
-    // valid and layout is computed correctly. html2canvas will then render the
-    // iframe's body element which has proper dimensions.
-    const iframe = document.createElement("iframe");
-    iframe.id = "resume-download-iframe";
-    iframe.style.position = "absolute";
-    iframe.style.top = "0";
-    iframe.style.left = "0";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
-    iframe.style.opacity = "0";
-    iframe.style.pointerEvents = "none";
-    document.body.appendChild(iframe);
+    // render resume preview into container so it matches the live UI exactly
+    const root = ReactDOM.createRoot(container);
+    root.render(
+      React.createElement(ResumePreview, {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        location: data.location,
+        linkedIn: data.linkedIn,
+        portfolio: data.portfolio,
+        profilePhoto: data.profilePhoto,
+        experiences: data.experiences.map(exp => ({
+          id: Math.random().toString(), // not used by PDF
+          jobTitle: exp.jobTitle,
+          company: exp.company,
+          startDate: exp.startDate,
+          endDate: exp.endDate,
+          currentlyWorking: exp.currentlyWorking,
+          responsibilities: exp.responsibilities,
+        })),
+        education: data.education.map(edu => ({
+          id: Math.random().toString(),
+          degree: edu.degree,
+          institution: edu.institution,
+          year: edu.year,
+          fieldOfStudy: edu.fieldOfStudy,
+        })),
+        skills: data.skills,
+        professionalSummary: data.professionalSummary,
+        certifications: data.certifications,
+        languages: data.languages,
+        projects: data.projects,
+        selectedTemplate: data.selectedTemplate,
+      })
+    );
 
-    const doc = iframe.contentDocument || iframe.contentWindow?.document;
-    if (!doc) throw new Error("Unable to access iframe document for PDF export");
+    // give React a tick to paint
+    await new Promise(resolve => requestAnimationFrame(() => resolve(null)));
+    // allow images/fonts to load
+    await new Promise(resolve => setTimeout(resolve, 300));
 
-    doc.open();
-    doc.write(htmlContent);
-    doc.close();
+    console.log("[PDF] container dims", container.offsetWidth, container.offsetHeight);
 
-    // Wait for layout to settle inside the iframe
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    const bodyEl = doc.body;
-    console.log("[PDF] iframe body dimensions", bodyEl.offsetWidth, bodyEl.offsetHeight);
-
+    // generate pdf from container element
     const fileName = `${data.firstName}_${data.lastName}_Resume.pdf`.replace(/\s+/g, '_');
     const opt = {
-      margin: 0,
-      filename: fileName,
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' as const }
+      margin:       0,
+      filename:     fileName,
+      image:        { type: 'jpeg' as const, quality: 1 },
+      html2canvas:  { scale: 2, useCORS: true, logging: true },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
     };
 
-    await html2pdf().from(bodyEl).set(opt).save();
+    await html2pdf().from(container).set(opt).save();
 
-    // Clean up the iframe
-    if (document.body.contains(iframe)) {
-      document.body.removeChild(iframe);
+    // cleanup
+    root.unmount();
+    if (document.body.contains(container)) {
+      document.body.removeChild(container);
     }
 
   } catch (error) {
