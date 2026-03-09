@@ -44,11 +44,15 @@ export async function generateResumePDF(data: ResumeData) {
     container.style.padding = "0.5in";
     container.style.backgroundColor = "white";
     
-    // Position it off-screen so it doesn't flash in the UI
-    container.style.position = "absolute";
-    container.style.left = "-9999px";
-    container.style.top = "-9999px";
-
+    // Keep it in the document flow but hidden behind everything else.
+    // html2canvas struggles to capture elements that are completely off-screen,
+    // so we avoid negative offsets. Instead we push the container behind using a
+    // very low z-index while keeping it at 0,0 so it still renders.
+    container.style.position = "fixed";
+    container.style.top = "0";
+    container.style.left = "0";
+    container.style.zIndex = "-9999";
+    container.style.pointerEvents = "none";
     const htmlContent = generateResumeHTML(data);
     container.innerHTML = htmlContent;
     document.body.appendChild(container);
