@@ -95,7 +95,11 @@ export async function generateResumePDF(data: ResumeData) {
     // allow images/fonts to load
     await new Promise(resolve => setTimeout(resolve, 300));
 
+    // debug dump: ensure container has rendered content
     console.log("[PDF] container dims", container.offsetWidth, container.offsetHeight);
+    console.log("[PDF] container innerHTML snippet", container.innerHTML.slice(0, 500));
+    // also log full text length for sanity
+    console.log("[PDF] container innerHTML length", container.innerHTML.length);
 
     // generate pdf from container element
     const fileName = `${data.firstName}_${data.lastName}_Resume.pdf`.replace(/\s+/g, '_');
@@ -106,6 +110,7 @@ export async function generateResumePDF(data: ResumeData) {
       html2canvas:  { scale: 2, useCORS: true, logging: true },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' as const }
     };
+    console.log("[PDF] calling html2pdf with opts", opt);
 
     await html2pdf().from(container).set(opt).save();
 
