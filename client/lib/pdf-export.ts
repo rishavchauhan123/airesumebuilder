@@ -122,10 +122,13 @@ function createResumeHTML(data: ResumeData): string {
       body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
       .resume-page { width: 816px; margin: 0 auto; background: white; padding: 0; }
       .header { background: linear-gradient(135deg, ${colors.primary}, ${colors.secondary}); color: white; padding: 40px; text-align: center; }
-      .avatar { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; margin: 0 auto 15px; border: 3px solid white; }
+      .avatar { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; margin: 0 auto 15px; border: 3px solid white; overflow: hidden; object-fit: cover; }
+      .avatar-img { width: 100%; height: 100%; object-fit: cover; }
+      .avatar-initials { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.3); }
       .name { font-size: 28px; font-weight: bold; margin: 10px 0; }
-      .contact { font-size: 12px; line-height: 1.6; margin-top: 10px; }
-      .contact-item { margin: 3px 0; }
+      .contact { font-size: 11px; line-height: 1.8; margin-top: 10px; }
+      .contact-item { margin: 2px 0; word-break: break-word; }
+      .contact-separator { margin: 0 4px; }
       .content { padding: 30px 40px; }
       .section { margin-bottom: 20px; page-break-inside: avoid; }
       .section-title { font-size: 12px; font-weight: bold; color: ${colors.primary}; text-transform: uppercase; border-bottom: 2px solid ${colors.primary}; padding-bottom: 5px; margin-bottom: 10px; letter-spacing: 1px; }
@@ -151,12 +154,21 @@ function createResumeHTML(data: ResumeData): string {
     </style>
     <div class="resume-page">
       <div class="header">
-        <div class="avatar">${initials}</div>
+        <div class="avatar">
+          ${data.profilePhoto ? `<img src="${data.profilePhoto}" alt="Profile" class="avatar-img" />` : `<div class="avatar-initials">${initials}</div>`}
+        </div>
         <div class="name">${escapeHtml(data.firstName + ' ' + data.lastName)}</div>
         <div class="contact">
           ${data.email ? `<div class="contact-item">${escapeHtml(data.email)}</div>` : ''}
           ${data.phone ? `<div class="contact-item">${escapeHtml(data.phone)}</div>` : ''}
           ${data.location ? `<div class="contact-item">${escapeHtml(data.location)}</div>` : ''}
+          ${data.linkedIn || data.portfolio ? `
+          <div class="contact-item">
+            ${data.linkedIn ? `<span>${escapeHtml(data.linkedIn)}</span>` : ''}
+            ${data.linkedIn && data.portfolio ? `<span class="contact-separator">•</span>` : ''}
+            ${data.portfolio ? `<span>${escapeHtml(data.portfolio)}</span>` : ''}
+          </div>
+          ` : ''}
         </div>
       </div>
 
