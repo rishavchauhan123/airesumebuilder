@@ -2,6 +2,32 @@ import { Link } from "react-router-dom";
 import { ArrowRight, FileText, Zap, Sparkles, Download, Lock } from "lucide-react";
 
 export default function Index() {
+  const features = [
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: "AI-Powered Content",
+      description:
+        "Get intelligent suggestions for your resume with Google Gemini integration",
+    },
+    {
+      icon: <FileText className="w-8 h-8" />,
+      title: "Professional Templates",
+      description:
+        "Choose from multiple modern, ATS-friendly resume templates",
+    },
+    {
+      icon: <Download className="w-8 h-8" />,
+      title: "Easy Export",
+      description:
+        "Download your resume as PDF with perfect formatting every time",
+    },
+    {
+      icon: <Lock className="w-8 h-8" />,
+      title: "Secure & Private",
+      description: "Your resume data is encrypted and never shared with third parties",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
