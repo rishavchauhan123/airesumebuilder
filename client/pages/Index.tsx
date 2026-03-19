@@ -99,9 +99,6 @@ export default function Index() {
                 <Sparkles className="w-5 h-5" />
                 Build Your Resume
               </Link>
-              <button className="px-8 py-4 rounded-lg font-semibold text-primary border-2 border-primary hover:bg-primary/5 transition-all">
-                Watch Demo
-              </button>
             </div>
 
             <p className="text-sm text-muted-foreground mt-6">
