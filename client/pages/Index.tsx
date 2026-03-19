@@ -603,6 +603,18 @@ export default function Index() {
           </div>
         </div>
       </footer>
+      <footer>
+  <a href="#" class="logo">
+    <div class="logo-gem">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1L14 5V11L8 15L2 11V5L8 1Z" fill="white" opacity=".9"/>
+        <path d="M8 1L14 5L8 8L2 5L8 1Z" fill="white" opacity=".4"/>
+      </svg>
+    </div>
+    ResumeAI
+    </a>
+    <p class="footer-copy">© 2026 ResumeAI. All rights reserved. Powered by <span>Google Gemini</span>.</p>
+  </footer>
     </div>
   );
 }
