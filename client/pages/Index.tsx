@@ -314,13 +314,13 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[14px]">
             {/* Card 1: AI Engine */}
-            <div className="relative group md:col-span-2 bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+            <div className="relative group md:col-span-2 bg-white border border-gray-200 rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-gray-50 hover:border-purple-300">
               <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-3">01 — AI Engine</p>
-                  <h3 className="text-xl font-bold text-foreground mb-3">Gemini AI Writing Engine</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-gray-500 mb-3">01 — AI Engine</p>
+                  <h3 className="text-xl font-bold text-black mb-3">Gemini AI Writing Engine</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     Gemini automatically generates summaries, bullet points, and skills so your resume stays polished and up-to-date.
                   </p>
                   <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.15)] border border-[rgba(157,145,251,0.2)] px-3 py-1 rounded">
@@ -332,9 +332,9 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="mt-8 bg-[#0b0b17] border border-[rgba(255,255,255,0.07)] rounded-2xl p-5">
-                <div className="text-xs text-muted-foreground mb-2">AI Generating Summary</div>
-                <div className="text-sm italic text-muted-foreground mb-3">“Proven leader with a track record of building scalable systems and mentoring cross-functional teams.”</div>
+              <div className="mt-8 bg-gray-100 border border-gray-200 rounded-2xl p-5">
+                <div className="text-xs text-gray-500 mb-2">AI Generating Summary</div>
+                <div className="text-sm italic text-gray-600 mb-3">“Proven leader with a track record of building scalable systems and mentoring cross-functional teams.”</div>
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1">
                     <span className="w-2 h-2 rounded-full bg-[#9d91fb] animate-bounce" style={{ animationDelay: "0ms" }} />
@@ -347,13 +347,13 @@ export default function Index() {
             </div>
 
             {/* Card 2: Preview */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-gray-50 hover:border-purple-300">
               <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-3">02 — Preview</p>
-                  <h3 className="text-xl font-bold text-foreground mb-3">Live Resume Preview</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-gray-500 mb-3">02 — Preview</p>
+                  <h3 className="text-xl font-bold text-black mb-3">Live Resume Preview</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     See edits in real time as you build — no guesswork, no surprises.
                   </p>
                   <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#93c5fd] bg-[rgba(96,165,250,0.1)] border border-[rgba(96,165,250,0.22)] px-3 py-1 rounded">
@@ -367,13 +367,13 @@ export default function Index() {
             </div>
 
             {/* Card 3: ATS */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-gray-50 hover:border-purple-300">
               <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-3">03 — ATS</p>
-                  <h3 className="text-xl font-bold text-foreground mb-3">ATS Optimised</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-gray-500 mb-3">03 — ATS</p>
+                  <h3 className="text-xl font-bold text-black mb-3">ATS Optimised</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     Built to pass modern Applicant Tracking Systems with a clean, readable structure.
                   </p>
                   <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.15)] border border-[rgba(157,145,251,0.2)] px-3 py-1 rounded">
@@ -387,13 +387,13 @@ export default function Index() {
             </div>
 
             {/* Card 4: Design */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-gray-50 hover:border-purple-300">
               <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-3">04 — Design</p>
-                  <h3 className="text-xl font-bold text-foreground mb-3">3 Pro Templates</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-gray-500 mb-3">04 — Design</p>
+                  <h3 className="text-xl font-bold text-black mb-3">3 Pro Templates</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     Choose from Modern, Classic, or Minimal templates that look great on screen and in print.
                   </p>
                 </div>
@@ -433,13 +433,13 @@ export default function Index() {
             </div>
 
             {/* Card 5: Export */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-gray-50 hover:border-purple-300">
               <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-3">05 — Export</p>
-                  <h3 className="text-xl font-bold text-foreground mb-3">Free PDF Export</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-gray-500 mb-3">05 — Export</p>
+                  <h3 className="text-xl font-bold text-black mb-3">Free PDF Export</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     Download a ready-to-print PDF with no watermark or signup required.
                   </p>
                   <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#22d87a] bg-[rgba(34,216,122,0.1)] border border-[rgba(34,216,122,0.2)] px-3 py-1 rounded">
@@ -477,15 +477,15 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
             {/* Modern Template */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-[rgba(124,109,250,0.4)] hover:shadow-[0_0_32px_rgba(124,109,250,0.25)]">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-purple-300 hover:shadow-[0_0_32px_rgba(157,145,251,0.2)]">
               <div className="absolute top-4 right-4 z-10">
-                <span className="text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.15)] border border-[rgba(157,145,251,0.2)] px-2.5 py-1 rounded-full">
+                <span className="text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.1)] border border-[rgba(157,145,251,0.3)] px-2.5 py-1 rounded-full">
                   Most Popular
                 </span>
               </div>
-              <div className="relative h-[220px] bg-[#13131f] flex items-center justify-center">
-                <div className="absolute inset-0 bg-radial-gradient from-[rgba(124,109,250,0.12)] to-transparent" />
-                <div className="w-[108px] h-[144px] bg-[#0a0a14] border border-white rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
+              <div className="relative h-[220px] bg-gray-50 flex items-center justify-center">
+                <div className="absolute inset-0 bg-radial-gradient from-[rgba(157,145,251,0.08)] to-transparent" />
+                <div className="w-[108px] h-[144px] bg-white border border-gray-300 rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
                   <div className="h-3 bg-gradient-to-r from-[#7c6dfa] to-[#5b4fdb] rounded-t-lg" />
                   <div className="p-2 space-y-1">
                     <div className="h-1 bg-gradient-to-r from-[#9d91fb] to-[#6c63ff] rounded w-full" />
@@ -497,19 +497,19 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              <div className="p-5 border-t border-[rgba(255,255,255,0.07)]">
-                <h3 className="text-[15px] font-bold text-white group-hover:text-[#9d91fb] transition-colors mb-1">
+              <div className="p-5 border-t border-gray-200">
+                <h3 className="text-[15px] font-bold text-black group-hover:text-[#9d91fb] transition-colors mb-1">
                   Modern
                 </h3>
-                <p className="text-[12px] text-muted-foreground">Bold gradients and clean typography</p>
+                <p className="text-[12px] text-gray-600">Bold gradients and clean typography</p>
               </div>
             </div>
 
             {/* Classic Template */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-[rgba(124,109,250,0.4)] hover:shadow-[0_0_32px_rgba(124,109,250,0.25)]">
-              <div className="relative h-[220px] bg-[#13131f] flex items-center justify-center">
-                <div className="absolute inset-0 bg-radial-gradient from-[rgba(124,109,250,0.12)] to-transparent" />
-                <div className="w-[108px] h-[144px] bg-[#0a0a14] border border-white rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-purple-300 hover:shadow-[0_0_32px_rgba(157,145,251,0.2)]">
+              <div className="relative h-[220px] bg-gray-50 flex items-center justify-center">
+                <div className="absolute inset-0 bg-radial-gradient from-[rgba(157,145,251,0.08)] to-transparent" />
+                <div className="w-[108px] h-[144px] bg-white border border-gray-300 rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
                   <div className="h-3 bg-[rgba(240,240,255,0.5)] border-b border-[rgba(124,109,250,0.6)] rounded-t-lg" />
                   <div className="p-2 space-y-1">
                     <div className="h-1 bg-[rgba(124,109,250,0.6)] rounded w-full" />
@@ -521,24 +521,24 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              <div className="p-5 border-t border-[rgba(255,255,255,0.07)]">
-                <h3 className="text-[15px] font-bold text-white group-hover:text-[#9d91fb] transition-colors mb-1">
+              <div className="p-5 border-t border-gray-200">
+                <h3 className="text-[15px] font-bold text-black group-hover:text-[#9d91fb] transition-colors mb-1">
                   Classic
                 </h3>
-                <p className="text-[12px] text-muted-foreground">Timeless design with subtle accents</p>
+                <p className="text-[12px] text-gray-600">Timeless design with subtle accents</p>
               </div>
             </div>
 
             {/* Minimal Template */}
-            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-[rgba(124,109,250,0.4)] hover:shadow-[0_0_32px_rgba(124,109,250,0.25)]">
+            <div className="relative group bg-white border border-gray-200 rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-purple-300 hover:shadow-[0_0_32px_rgba(157,145,251,0.2)]">
               <div className="absolute top-4 right-4 z-10">
                 <span className="text-[10px] font-semibold text-[#22d87a] bg-[rgba(34,216,122,0.1)] border border-[rgba(34,216,122,0.2)] px-2.5 py-1 rounded-full">
                   Clean
                 </span>
               </div>
-              <div className="relative h-[220px] bg-[#13131f] flex items-center justify-center">
-                <div className="absolute inset-0 bg-radial-gradient from-[rgba(124,109,250,0.12)] to-transparent" />
-                <div className="w-[108px] h-[144px] bg-[#0a0a14] border border-white rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
+              <div className="relative h-[220px] bg-gray-50 flex items-center justify-center">
+                <div className="absolute inset-0 bg-radial-gradient from-[rgba(157,145,251,0.08)] to-transparent" />
+                <div className="w-[108px] h-[144px] bg-white border border-gray-300 rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
                   <div className="h-3 bg-[rgba(34,216,122,0.7)] rounded-t-lg" />
                   <div className="p-2 space-y-1">
                     <div className="h-1 bg-[rgba(34,216,122,0.5)] rounded w-full" />
@@ -550,11 +550,11 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              <div className="p-5 border-t border-[rgba(255,255,255,0.07)]">
-                <h3 className="text-[15px] font-bold text-white group-hover:text-[#9d91fb] transition-colors mb-1">
+              <div className="p-5 border-t border-gray-200">
+                <h3 className="text-[15px] font-bold text-black group-hover:text-[#9d91fb] transition-colors mb-1">
                   Minimal
                 </h3>
-                <p className="text-[12px] text-muted-foreground">Simple, elegant, and distraction-free</p>
+                <p className="text-[12px] text-gray-600">Simple, elegant, and distraction-free</p>
               </div>
             </div>
           </div>
@@ -603,18 +603,6 @@ export default function Index() {
           </div>
         </div>
       </footer>
-      <footer>
-  <a href="#" class="logo">
-    <div class="logo-gem">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M8 1L14 5V11L8 15L2 11V5L8 1Z" fill="white" opacity=".9"/>
-        <path d="M8 1L14 5L8 8L2 5L8 1Z" fill="white" opacity=".4"/>
-      </svg>
-    </div>
-    ResumeAI
-    </a>
-    <p class="footer-copy">© 2026 ResumeAI. All rights reserved. Powered by <span>Google Gemini</span>.</p>
-  </footer>
     </div>
   );
 }
