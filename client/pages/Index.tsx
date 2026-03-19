@@ -2,59 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight, FileText, Zap, Sparkles, Download, Lock } from "lucide-react";
 
 export default function Index() {
-  const features = [
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "AI-Powered Content",
-      description:
-        "Get intelligent suggestions for your resume with Google Gemini integration",
-    },
-    {
-      icon: <FileText className="w-8 h-8" />,
-      title: "Professional Templates",
-      description:
-        "Choose from multiple modern, ATS-friendly resume templates",
-    },
-    {
-      icon: <Download className="w-8 h-8" />,
-      title: "Easy Export",
-      description:
-        "Download your resume as PDF with perfect formatting every time",
-    },
-    {
-      icon: <Lock className="w-8 h-8" />,
-      title: "Secure & Private",
-      description: "Your resume data is encrypted and never shared with third parties",
-    },
-  ];
-
-  const steps = [
-    {
-      number: "1",
-      title: "Fill Your Information",
-      description:
-        "Start with your personal details, contact info, and profile photo",
-    },
-    {
-      number: "2",
-      title: "Add Your Experience",
-      description:
-        "Showcase your professional background with multiple positions",
-    },
-    {
-      number: "3",
-      title: "Highlight Your Skills",
-      description:
-        "Add skills manually or choose from AI-suggested recommendations",
-    },
-    {
-      number: "4",
-      title: "Choose & Download",
-      description:
-        "Select a template and download your polished resume as PDF",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -171,37 +118,191 @@ export default function Index() {
       </section>
 
       {/* How It Works Section */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
-            How It Works
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Simple step-by-step process to build your professional resume
-          </p>
-        </div>
-
-        <div className="grid grid-cols-4 gap-6">
-          {steps.map((step, index) => (
-            <div key={index} className="relative">
-              {/* Connector Line */}
-              {index < steps.length - 1 && (
-                <div className="hidden sm:block absolute top-12 left-1/2 w-[calc(100%+24px)] h-1 bg-gradient-to-r from-primary to-transparent -translate-x-1/2 -translate-y-1/2"></div>
-              )}
-
-              <div className="relative bg-white border-2 border-primary rounded-xl p-6 text-center">
-                <div className="w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center mx-auto mb-4 text-lg">
-                  {step.number}
+      <section id="how-it-works" className="py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 gap-18 items-start">
+            {/* Left Column */}
+            <div className="sticky top-24">
+              <div className="relative mb-8">
+                <div className="text-xs font-semibold tracking-widest uppercase text-muted-foreground relative">
+                  <span className="relative z-10">HOW IT WORKS</span>
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="h-px bg-accent flex-1"></div>
+                    <div className="w-8"></div>
+                    <div className="h-px bg-accent flex-1"></div>
+                  </div>
                 </div>
-                <h3 className="font-bold text-foreground mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {step.description}
-                </p>
+              </div>
+              <h2 className="text-4xl font-bold text-foreground leading-tight mb-6">
+                Seven steps to a<br />
+                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">perfect resume.</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+                Our guided form walks you through every section. AI fills the gaps so you never face a blank page.
+              </p>
+
+              {/* Live Preview Card */}
+              <div className="bg-card border border-border rounded-3xl shadow-lg overflow-hidden">
+                {/* Top Toolbar */}
+                <div className="bg-muted/50 border-b border-border px-6 py-3 flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="flex-1 text-center">
+                    <span className="text-xs text-muted-foreground">resume-preview.pdf</span>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">Jordan Singh</h3>
+                      <p className="text-xs uppercase text-muted-foreground tracking-wide">SENIOR SOFTWARE ENGINEER · REMOTE</p>
+                    </div>
+
+                    <div className="border-t border-border"></div>
+
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Experience</h4>
+                      <div className="space-y-2">
+                        <p className="text-sm text-foreground">Lead Engineer — Stripe</p>
+                        <p className="text-sm text-foreground">Frontend Developer — Vercel</p>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-border"></div>
+
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">Skills</h4>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs text-muted-foreground w-20">React</span>
+                          <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-4/5"></div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs text-muted-foreground w-20">TypeScript</span>
+                          <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-3/4"></div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs text-muted-foreground w-20">Node.js</span>
+                          <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-5/6"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Strip */}
+                <div className="bg-accent/5 border-t border-border px-6 py-4 flex items-center gap-3">
+                  <div className="flex gap-1">
+                    <div className="w-1.5 h-1.5 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                    <div className="w-1.5 h-1.5 bg-accent rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                    <div className="w-1.5 h-1.5 bg-accent rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  </div>
+                  <span className="text-sm text-accent font-medium">Gemini is writing your summary…</span>
+                </div>
               </div>
             </div>
-          ))}
+
+            {/* Right Column */}
+            <div className="space-y-0">
+              {/* Step 1 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5 border-b border-border/50">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">01</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">👤</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Personal Information</h3>
+                  <p className="text-sm text-muted-foreground">Add your name, contact details, LinkedIn and location.</p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5 border-b border-border/50">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">02</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">💼</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Work Experience</h3>
+                  <p className="text-sm text-muted-foreground mb-2">AI rewrites your bullet points to be specific, impactful, and ATS-ready.</p>
+                  <span className="inline-block text-[10px] font-semibold bg-accent/10 text-accent border border-accent/20 px-2.5 py-0.5 rounded">AI-Enhanced</span>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5 border-b border-border/50">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">03</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">🎓</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Education</h3>
+                  <p className="text-sm text-muted-foreground">Degrees, certifications, and courses — cleanly formatted.</p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5 border-b border-border/50">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">04</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">⚡</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Skills</h3>
+                  <p className="text-sm text-muted-foreground mb-2">Gemini AI suggests the most relevant skills for your role automatically.</p>
+                  <span className="inline-block text-[10px] font-semibold bg-accent/10 text-accent border border-accent/20 px-2.5 py-0.5 rounded">Gemini AI</span>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5 border-b border-border/50">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">05</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">✍️</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Professional Summary</h3>
+                  <p className="text-sm text-muted-foreground mb-2">One click. Gemini writes a compelling tailored profile summary.</p>
+                  <span className="inline-block text-[10px] font-semibold bg-accent/10 text-accent border border-accent/20 px-2.5 py-0.5 rounded">One-click Generate</span>
+                </div>
+              </div>
+
+              {/* Step 6 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5 border-b border-border/50">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">06</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">🎨</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Choose Your Template</h3>
+                  <p className="text-sm text-muted-foreground">Pick from Modern, Classic, or Minimal. Live preview updates instantly.</p>
+                </div>
+              </div>
+
+              {/* Step 7 */}
+              <div className="grid grid-cols-[28px_40px_1fr] gap-4 items-start py-6.5">
+                <span className="text-xs font-semibold text-muted-foreground pt-3">07</span>
+                <div className="w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center hover:border-accent hover:shadow-sm transition-all cursor-pointer">
+                  <span className="text-lg">📄</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">Download Your PDF</h3>
+                  <p className="text-sm text-muted-foreground">One-click export. No account, no watermark, no fee.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -301,11 +402,16 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 flex justify-between items-center">
-            <p className="text-sm">
-              © 2024 ResumeAI. All rights reserved.
+          <div className="border-t border-border pt-8 flex justify-between items-center flex-wrap gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <FileText className="w-6 h-6 text-white" />
+              </div>
+              <span className="font-bold text-xl text-foreground">ResumeAI</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              © 2026 ResumeAI. All rights reserved. Powered by <span className="text-accent font-medium">Google Gemini</span>.
             </p>
-            <p className="text-sm">Made with ❤️</p>
           </div>
         </div>
       </footer>
