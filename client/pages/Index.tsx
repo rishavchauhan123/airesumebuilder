@@ -455,6 +455,112 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Templates Section */}
+      <section id="templates" className="py-[104px] text-center">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative mb-16">
+            <div className="relative inline-flex items-center justify-center text-[11.5px] font-semibold tracking-[2.5px] uppercase text-[#9d91fb]">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-[1px] bg-[#9d91fb]" />
+              <span className="px-3">Templates</span>
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-[1px] bg-[#9d91fb]" />
+            </div>
+            <h2 className="text-4xl font-bold text-foreground leading-tight mb-4">
+              Three designs.<br />
+              <span className="bg-gradient-to-r from-[#9d91fb] to-[#6c63ff] bg-clip-text text-transparent">
+                All stunning.
+              </span>
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Every template is ATS-safe, pixel-perfect on screen and in print, and free to use.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
+            {/* Modern Template */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-[rgba(124,109,250,0.4)] hover:shadow-[0_0_32px_rgba(124,109,250,0.25)]">
+              <div className="absolute top-4 right-4 z-10">
+                <span className="text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.15)] border border-[rgba(157,145,251,0.2)] px-2.5 py-1 rounded-full">
+                  Most Popular
+                </span>
+              </div>
+              <div className="relative h-[220px] bg-[#13131f] flex items-center justify-center">
+                <div className="absolute inset-0 bg-radial-gradient from-[rgba(124,109,250,0.12)] to-transparent" />
+                <div className="w-[108px] h-[144px] bg-[#0a0a14] border border-white rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
+                  <div className="h-3 bg-gradient-to-r from-[#7c6dfa] to-[#5b4fdb] rounded-t-lg" />
+                  <div className="p-2 space-y-1">
+                    <div className="h-1 bg-gradient-to-r from-[#9d91fb] to-[#6c63ff] rounded w-full" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-5/6" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-4/6" />
+                    <div className="h-1 bg-gradient-to-r from-[#9d91fb] to-[#6c63ff] rounded w-3/4" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-2/3" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-1/2" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-5 border-t border-[rgba(255,255,255,0.07)]">
+                <h3 className="text-[15px] font-bold text-white group-hover:text-[#9d91fb] transition-colors mb-1">
+                  Modern
+                </h3>
+                <p className="text-[12px] text-muted-foreground">Bold gradients and clean typography</p>
+              </div>
+            </div>
+
+            {/* Classic Template */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-[rgba(124,109,250,0.4)] hover:shadow-[0_0_32px_rgba(124,109,250,0.25)]">
+              <div className="relative h-[220px] bg-[#13131f] flex items-center justify-center">
+                <div className="absolute inset-0 bg-radial-gradient from-[rgba(124,109,250,0.12)] to-transparent" />
+                <div className="w-[108px] h-[144px] bg-[#0a0a14] border border-white rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
+                  <div className="h-3 bg-[rgba(240,240,255,0.5)] border-b border-[rgba(124,109,250,0.6)] rounded-t-lg" />
+                  <div className="p-2 space-y-1">
+                    <div className="h-1 bg-[rgba(124,109,250,0.6)] rounded w-full" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-5/6" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-4/6" />
+                    <div className="h-1 bg-[rgba(124,109,250,0.6)] rounded w-3/4" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-2/3" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-1/2" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-5 border-t border-[rgba(255,255,255,0.07)]">
+                <h3 className="text-[15px] font-bold text-white group-hover:text-[#9d91fb] transition-colors mb-1">
+                  Classic
+                </h3>
+                <p className="text-[12px] text-muted-foreground">Timeless design with subtle accents</p>
+              </div>
+            </div>
+
+            {/* Minimal Template */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] overflow-hidden cursor-pointer transition-all hover:-translate-y-[6px] hover:border-[rgba(124,109,250,0.4)] hover:shadow-[0_0_32px_rgba(124,109,250,0.25)]">
+              <div className="absolute top-4 right-4 z-10">
+                <span className="text-[10px] font-semibold text-[#22d87a] bg-[rgba(34,216,122,0.1)] border border-[rgba(34,216,122,0.2)] px-2.5 py-1 rounded-full">
+                  Clean
+                </span>
+              </div>
+              <div className="relative h-[220px] bg-[#13131f] flex items-center justify-center">
+                <div className="absolute inset-0 bg-radial-gradient from-[rgba(124,109,250,0.12)] to-transparent" />
+                <div className="w-[108px] h-[144px] bg-[#0a0a14] border border-white rounded-lg shadow-lg rotate-[-2.5deg] overflow-hidden">
+                  <div className="h-3 bg-[rgba(34,216,122,0.7)] rounded-t-lg" />
+                  <div className="p-2 space-y-1">
+                    <div className="h-1 bg-[rgba(34,216,122,0.5)] rounded w-full" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-5/6" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-4/6" />
+                    <div className="h-1 bg-[rgba(34,216,122,0.5)] rounded w-3/4" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-2/3" />
+                    <div className="h-1 bg-[rgba(255,255,255,0.12)] rounded w-1/2" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-5 border-t border-[rgba(255,255,255,0.07)]">
+                <h3 className="text-[15px] font-bold text-white group-hover:text-[#9d91fb] transition-colors mb-1">
+                  Minimal
+                </h3>
+                <p className="text-[12px] text-muted-foreground">Simple, elegant, and distraction-free</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-primary to-secondary py-16">
         <div className="max-w-4xl mx-auto px-6 text-center text-white">
