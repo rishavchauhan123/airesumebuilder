@@ -111,44 +111,12 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">
-              Powerful Features for Your Resume
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to create a professional resume that impresses
-              recruiters
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-xl border border-border hover:shadow-lg transition-all"
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* How It Works Section */}
       <section id="how-it-works" className="py-[104px]">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 gap-18 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-18 items-start">
             {/* Left Column */}
-            <div className="sticky top-[100px]">
+            <div className="lg:sticky lg:top-[100px]">
               <div className="relative mb-8">
                 <div className="relative inline-flex items-center text-[11.5px] font-semibold tracking-[2.5px] uppercase text-[#9d91fb]">
                   <span className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-[1px] bg-[#9d91fb]" />
@@ -324,6 +292,169 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Features Section */}
+      <section id="features" className="py-[104px] text-center">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative mb-16">
+            <div className="relative inline-flex items-center justify-center text-[11.5px] font-semibold tracking-[2.5px] uppercase text-[#9d91fb]">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-[1px] bg-[#9d91fb]" />
+              <span className="px-3">Features</span>
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-[1px] bg-[#9d91fb]" />
+            </div>
+            <h2 className="text-4xl font-bold text-foreground leading-tight mb-4">
+              Everything you need.<br />
+              <span className="bg-gradient-to-r from-[#9d91fb] to-[#6c63ff] bg-clip-text text-transparent">
+                Nothing you don't.
+              </span>
+            </h2>
+            <p className="text-base text-muted-foreground max-w-[500px] mx-auto">
+              Build a smarter resume faster — with the tools you need, and nothing you don’t.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[14px]">
+            {/* Card 1: AI Engine */}
+            <div className="relative group md:col-span-2 bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+              <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-3">01 — AI Engine</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3">Gemini AI Writing Engine</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Gemini automatically generates summaries, bullet points, and skills so your resume stays polished and up-to-date.
+                  </p>
+                  <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.15)] border border-[rgba(157,145,251,0.2)] px-3 py-1 rounded">
+                    ✦ Powered by Gemini
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-[rgba(157,145,251,0.15)] flex items-center justify-center text-xl">
+                  🤖
+                </div>
+              </div>
+
+              <div className="mt-8 bg-[#0b0b17] border border-[rgba(255,255,255,0.07)] rounded-2xl p-5">
+                <div className="text-xs text-muted-foreground mb-2">AI Generating Summary</div>
+                <div className="text-sm italic text-muted-foreground mb-3">“Proven leader with a track record of building scalable systems and mentoring cross-functional teams.”</div>
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 rounded-full bg-[#9d91fb] animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <span className="w-2 h-2 rounded-full bg-[#9d91fb] animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <span className="w-2 h-2 rounded-full bg-[#9d91fb] animate-bounce" style={{ animationDelay: "300ms" }} />
+                  </div>
+                  <span className="text-sm text-[#9d91fb] font-medium">Writing your summary…</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Preview */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+              <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-3">02 — Preview</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3">Live Resume Preview</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    See edits in real time as you build — no guesswork, no surprises.
+                  </p>
+                  <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#93c5fd] bg-[rgba(96,165,250,0.1)] border border-[rgba(96,165,250,0.22)] px-3 py-1 rounded">
+                    Instant Updates
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-[rgba(96,165,250,0.15)] flex items-center justify-center text-xl">
+                  👁️
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: ATS */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+              <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-3">03 — ATS</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3">ATS Optimised</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Built to pass modern Applicant Tracking Systems with a clean, readable structure.
+                  </p>
+                  <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#9d91fb] bg-[rgba(157,145,251,0.15)] border border-[rgba(157,145,251,0.2)] px-3 py-1 rounded">
+                    98% Pass Rate
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-[rgba(157,145,251,0.15)] flex items-center justify-center text-xl">
+                  🎯
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Design */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+              <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-3">04 — Design</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3">3 Pro Templates</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Choose from Modern, Classic, or Minimal templates that look great on screen and in print.
+                  </p>
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-[rgba(157,145,251,0.15)] flex items-center justify-center text-xl">
+                  🎨
+                </div>
+              </div>
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                <div className="rounded-lg border border-[rgba(255,255,255,0.08)] overflow-hidden">
+                  <div className="h-8 bg-gradient-to-r from-[#7c6dfa] to-[#5b4fdb]" />
+                  <div className="p-2 space-y-1">
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded" />
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded w-5/6" />
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded w-4/6" />
+                    <div className="text-[10px] text-muted-foreground mt-1">Modern</div>
+                  </div>
+                </div>
+                <div className="rounded-lg border border-[rgba(255,255,255,0.08)] overflow-hidden">
+                  <div className="h-8 bg-[#0f0f1a] border-b border-[rgba(157,145,251,0.2)]" />
+                  <div className="p-2 space-y-1">
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded" />
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded w-5/6" />
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded w-4/6" />
+                    <div className="text-[10px] text-muted-foreground mt-1">Classic</div>
+                  </div>
+                </div>
+                <div className="rounded-lg border border-[rgba(255,255,255,0.08)] overflow-hidden">
+                  <div className="h-8 bg-[rgba(34,216,122,0.15)] border border-[rgba(34,216,122,0.2)]" />
+                  <div className="p-2 space-y-1">
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded" />
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded w-5/6" />
+                    <div className="h-1.5 bg-[rgba(255,255,255,0.12)] rounded w-4/6" />
+                    <div className="text-[10px] text-muted-foreground mt-1">Minimal</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 5: Export */}
+            <div className="relative group bg-[#0f0f1a] border border-[rgba(255,255,255,0.07)] rounded-[24px] px-[26px] pt-[30px] pb-[30px] overflow-hidden transition-all hover:-translate-y-[3px] hover:bg-[#13131f] hover:border-[rgba(124,109,250,0.3)]">
+              <div className="absolute top-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#9d91fb] to-[#6c63ff]" />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-3">05 — Export</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3">Free PDF Export</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Download a ready-to-print PDF with no watermark or signup required.
+                  </p>
+                  <span className="inline-flex items-center gap-2 mt-4 text-[10px] font-semibold text-[#22d87a] bg-[rgba(34,216,122,0.1)] border border-[rgba(34,216,122,0.2)] px-3 py-1 rounded">
+                    ✓ No Sign-up Needed
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-[rgba(34,216,122,0.15)] flex items-center justify-center text-xl">
+                  📥
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-primary to-secondary py-16">
         <div className="max-w-4xl mx-auto px-6 text-center text-white">
@@ -346,7 +477,7 @@ export default function Index() {
       {/* Footer */}
       <footer className="bg-foreground text-white/80 py-12 border-t border-border">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
@@ -359,77 +490,10 @@ export default function Index() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Templates
-                  </a>
-                </li>
-              </ul>
+              <p className="text-sm text-muted-foreground">
+              © 2026 ResumeAI. All rights reserved.
+              </p>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Guides
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    FAQ
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Privacy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Terms
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-border pt-8 flex justify-between items-center flex-wrap gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <FileText className="w-6 h-6 text-white" />
-              </div>
-              <span className="font-bold text-xl text-foreground">ResumeAI</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              © 2026 ResumeAI. All rights reserved. Powered by <span className="text-accent font-medium">Google Gemini</span>.
-            </p>
           </div>
         </div>
       </footer>
